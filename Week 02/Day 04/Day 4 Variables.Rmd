@@ -1,0 +1,273 @@
+---
+title: "Day 4 Data Frames and Variables"
+author: "Carey Kopeikin and Steph Neul"
+date: "8/9/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+```
+
+# What you will learn
+
+-   Elemental Extraction and Indexing
+-   How to import data files that are comma separated
+-   Exploring data frames with `head` and `str`
+-   `$` operator
+-   Explore the size of a data frame with `nrow`, `ncol`, and `dim`
+-   Changing the class of a variable
+
+# Subsetting and Element Extraction
+
+If you have a vector you may want to get some particular value from the list. To do this we will use a process called *indexing*. To index we use square brackets following the name of the vector. There are many different manipulations you can do with this.
+
+First though we need a vector. We created the bardoe.ages vectors in day three but we will need to create them again in this rmd. If we don't and we clear our environment R will not be able to find the objects.
+
+```{r}
+dr.bardoes.age <- 52
+child.1.age <- 15
+child.2.age <- 19
+cat.age <- 15
+
+bardoe.ages <- c(dr.bardoes.age, cat.age, child.1.age, child.2.age)
+bardoe.ages
+```
+
+```{r}
+bardoe.ages
+
+#this gives the first element in the vector.
+bardoe.ages[1]
+
+#this gives the length of the vector
+length(bardoe.ages)
+
+#note that this will give the last element in the vector.
+bardoe.ages[ length(bardoe.ages) ] 
+
+#this gives the first and third elements. note that you must include the c(). 
+bardoe.ages[ c(1, 3)] 
+
+#this gives the first element 3 times.
+bardoe.ages[ c(1,1,1)] 
+
+```
+
+The following shows how to get the smallest element in a vector using indexing
+
+```{r}
+bardoe.ages
+
+#sort the vector so that the smallest element is first
+sorted.bardoe.ages <- sort( bardoe.ages, decreasing = FALSE )
+sorted.bardoe.ages
+
+#extract the first element (which is the smallest due to the previous step)
+youngest.bardoe <- sorted.bardoe.ages[1]
+youngest.bardoe
+
+```
+
+You can delete a particular value and return a list without that value by putting a negative value in the square brackets.
+
+```{r}
+#removes the first element in a list
+young.bardoes <- bardoe.ages[-1]
+young.bardoes
+```
+
+We can also use logical tests to pick out certain values in vectors.
+
+```{r}
+
+my.vec <- c(2,3,6,7,9,10,11,23,9,10)
+
+
+#Creates a logical vector with a value for each element in the original vector.
+my.vec > 3   
+
+
+#Creates a subset of the elements for which the logical vector is true.
+my.vec [ my.vec > 3 ]  
+
+```
+
+You can use these ideas to replace values in a vector.
+
+```{r}
+my.vec[ my.vec > 9 ] <- 0
+my.vec
+```
+
+
+# Reading files
+
+We will now import a data set into R. There are various types of files that R can read. The easiest and most commonly found are comma separated values or "csv" files. The command used to import a csv file is read.csv(). In order for R to be able to read the csv file it must be saved in the same folder as the R markdown file you are reading it from.
+
+In order to work with the data we import it using the read function and then save it as a "Data Frame"
+
+```{r}
+survey.data <- read.csv( "DsSurveySample.csv" )
+
+```
+
+Notice that after running the code chunk there was no output. The only change you should have seen is that in your environment there should now be something called in order to display the data you will need to call it.
+
+```{r}
+
+
+
+```
+
+survey.data is a data frame. A data frame is essentially a collection of vectors of the same length. Click the arrows to scroll through the different variables. If you look just under the variable names you will see what type of vectors they are. Notice the letters in light gray under the variables. These are the classes that R considers each variable. Some of these for example What.is.your.favorite.subject and pairs.of.shoes are not the correct type. We will learn how to fix this later.
+
+**Head Function**
+
+If we only want to see a list of the headings and the first six entries we can use the head() function. This is especially useful when dealing with a large data set. *Failing to use the head() function can result in a 5 page paper turning into a 500+ page paper when knitted!*
+
+```{r}
+head(survey.data)
+```
+
+If we want to see more or fewer entries we can add a number after the data frame:
+
+```{r}
+#see the first 9 entries
+head(survey.data, 9)
+
+
+```
+
+Another way to get some information quickly is to use the structure function
+
+```{r}
+str(survey.data)
+```
+
+Notice that this function tells how many variables and observations there are as well as other valuable information.
+
+We can explore the size of the data frame to see how many columns there are, how many rows there are, or cut to the chase and see the dimensions of the data frame.
+
+```{r}
+#number of rows
+nrow(survey.data)
+
+#number of columns
+ncol(survey.data)
+
+#dimensions rows, columns
+dim(survey.data)
+```
+
+# Working with the Vectors within the Data frame
+
+To look at just one vector at a time we need to use the $ operator.
+We will look at the vector "Number of Siblings".
+
+```{r}
+
+survey.data$How.many.siblings
+
+```
+
+If I want to know how many total children are in a family I need to include the student who took the survey. I can add that person to each group of siblings.
+
+```{r}
+
+
+```
+
+This works because vector operations are evaluated component-wise: this means that we calculate the final result by applying the operation to each of the individual components of the vectors.
+
+*Note that this does not change the data frame!
+*Run the code chunk below to see that it has not changed:
+
+```{r}
+survey.data$How.many.siblings
+```
+
+To **change** the data frame you will need to overwrite the vector using the assignment operator:
+
+```{r}
+survey.data$How.many.siblings <- survey.data$How.many.siblings + 1
+survey.data$How.many.siblings
+```
+
+To get back to the original data you need to re-import the data set
+
+```{r}
+survey.data <- read.csv( "DsSurveySample.csv" )
+survey.data$How.many.siblings
+
+```
+
+Another way to edit the data set is to create a new column in it.
+
+```{r}
+
+survey.data$total.children <- survey.data$How.many.siblings + 1
+head(survey.data)
+
+```
+
+*Your Turn*: Create a new column in the data set that multiples the "political" vector by 2. Make sure the name of your new vector is descriptive!
+
+```{r}
+
+```
+
+
+## Changing a Vector's Type
+
+In order to change a vector's type you can use as.TYPE(). What.is.your.favorite.subject is currently a character vector.
+
+```{r}
+survey.data$What.is.your.favorite.subject
+class(survey.data$What.is.your.favorite.subject)
+```
+
+What.is.your.favorite.subject is a **category** though so it should be a factor. We can change it using as.factor()
+
+```{r}
+survey.data$What.is.your.favorite.subject <- as.factor(survey.data$What.is.your.favorite.subject)
+
+survey.data
+survey.data$What.is.your.favorite.subject
+class(survey.data$What.is.your.favorite.subject)
+```
+
+Notice that What.is.your.favorite.subject is now a factor.
+
+
+pairs.of.shoes should be numeric but it is a character vector. When we call the vector it is easy to see that as the numbers have quotation marks around them.
+
+```{r}
+survey.data$pairs.of.shoes
+```
+
+If we try the same approach as before we will get a numeric vector but it will have NAs where the non numeric values had been. More on NA later.
+
+```{r}
+survey.data$pairs.of.shoes <- as.numeric(survey.data$pairs.of.shoes)
+survey.data$pairs.of.shoes
+```
+
+zero.tolerance is a character vector but might be better as a logical vector.
+
+```{r}
+survey.data$zero.tolerance
+```
+
+We can change this by using a logical statement.
+
+```{r}
+survey.data$zero.tolerance <- survey.data$zero.tolerance == "Yes"
+survey.data$zero.tolerance
+```
+
+*Your Turn*: Find another vector within the data frame that you think should be changed to a different Type, and then change it.
+```{r}
+
+```
+

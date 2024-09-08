@@ -1,0 +1,72 @@
+---
+title: "Day 4 Homework"
+author: "Carey Kopeikin and Steph Neul"
+date: "8/23/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+```
+
+###Section 1	
+
+1. Create a vector called ```letters.in.name``` that has the number of letters in your first name, your middle name and last name. This would be my answer:
+```{r}
+#Carey Jason Kopeikin
+letters.in.name <- c(5, 5, 8)
+```
+
+2. Create a logical vector that contains TRUE for each of your names if your name is longer than 5 letters and FALSE if it is shorter. Do this in the two ways explained below. Note that the output for my names would be:
+[1] FALSE FALSE  TRUE
+
+  a. Method 1: create the vector ```is.longer.than.5.method.1``` and for each of your names manually type in TRUE if it is longer than 5 and FALSE if not (there should be a TRUE or FALSE for each of the names). Then call the vector.
+
+  b. Method 2: create the vector ```is.longer.than.5.method.2``` and use logical tests to evaluate if each of your names are longer than 5. Then call the vector.
+  
+  c. Check to make sure your outputs from parts a and b are the same.
+  
+
+3. Create the vector ```some.numbers``` and assign it these numbers 4, 8, 1, -3, 22. Then:
+
+  a.	sort the numbers from biggest to smallest.
+
+  b.	sort the numbers from smallest to biggest.
+
+  c.	find the number of elements in the vector using R.
+
+  d.	display only the second element
+
+  e.	display the 3rd and last elements
+
+  f.	use logical statements to show only the numbers less than 5.
+
+###Section 2 
+
+4. Read in the file `mariokart.csv` and save it as a data frame. Information about `mariokart.csv` can be found here: <https://www.openintro.org/data/index.php?data=mariokart>
+You will need to go to that website to read about the data for some of these questions!
+
+
+5. Display the first 6 observations.
+
+
+6. Display the first 15 observations:
+
+
+7. Display the structure of the data frame:
+
+
+8. Display the number of observations (i.e. how many rows!)
+
+
+9. Display the number of variables
+
+
+10. What information does the variable wheels provide? You will need to read about the data on the website provided in order to answer this question. 
+
+###Section 3
+
+11. Ebay takes 10.2% of the total price of the games as a sales fee: <https://www.ebay.com/help/selling/fees-credits-invoices/selling-fees?id=4364>. Create a new column in the data frame that shows adjusted revenue for the seller after Ebay takes out its fee. Give your new column a name that makes sense.
+
+12. Ebay also charges a \$0.35 listing price per item. Create a new column that shows total revenue for the seller after Ebay takes out both its sales fee and listing price. Give your column a new name that makes sense.
+

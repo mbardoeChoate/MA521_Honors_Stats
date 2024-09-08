@@ -1,0 +1,94 @@
+---
+title: "Day 5 Review for Quiz"
+author: "Stephanie Neul"
+date: "9/20/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE)
+```
+
+##Part A
+
+1. Find the cubed root of 30.
+
+2. Create a character vector of the first names of four people in this class, then display your vector.
+
+3. Have R display your character vector from problem 2 so that it is sorted in alphabetical order (from A to Z).
+
+
+4. A teacher has given a test. The following are the scores from one of her classes. Create a vector of the scores and then sort the vector so that the scores are in order from highest to lowest score. Test scores: 61, 100, 98, 85, 75, 87, 90, 101, 99, 80, 60, 90, 101, 65
+
+
+  a. The teacher has decided that anyone who scored lower than 70 will automatically earn a score of 70. Use a logical test to make this change.
+
+
+
+  b. The teacher has decided to also add 5 points to everyone's test score. Create a *new* vector that contains the new scores. 
+
+
+
+
+##Part B
+
+1. Read in the data set ```nba_players_19.csv``` and display the first *7* rows. You can find more information about the data set here: https://www.openintro.org/data/index.php?data=nba_players_19
+
+2.  How many observations and variables does this data frame have? How do you know (You must use R to find these values)?
+
+3. For the variable *last_name*, answer the following questions:
+
+a. Should we think of this as a quantitative variable or a categorical variable.
+
+
+
+
+b. What class should it be, and why?
+
+
+
+4. For the variable *team*, answer the following questions:
+
+a. Should we think of this as a quantitative variable or a categorical variable.
+
+
+
+b. What class should it be, and why?
+
+
+
+5. For the variable *number*, answer the following questions:
+
+a. Should we think of this as a quantitative variable or a categorical variable.
+
+
+
+
+b. What class should it be, and why?
+
+
+
+6. For the variable *height*, answer the following questions:
+
+a. Should we think of this as a quantitative variable or a categorical variable.
+
+
+
+
+b. What class should it be, and why?
+
+
+
+7. For each variable that you said above is not the correct class, change it in the data frame so that it is the correct class. Then display the first 7 rows of the updated data frame.
+
+
+
+8. This data frame gives the height of each player in inches. Create a new vector in the data frame that gives the height of the player in centimeters. (1 inch = 2.54 cm). Then display the first 7 rows of the updated data frame.
+
+
+
+9. What is the height in inches of the tallest player in this data set? Use sorting and element extraction for this problem.
+
+
+
+10. Print out the heights of all players in this data set who are over 7 feet tall.
